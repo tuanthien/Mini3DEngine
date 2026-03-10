@@ -43,10 +43,11 @@ MyVector3 rotate_xz(MyVector3 vec3, float angle) {
   };
 }*/
 
-void scalar_mul(Matrix3x3 mat, float scalar, Matrix3x3 out) {
+void scalar_mul(Matrix3x3 mat, float scalar, double scalar_d,  Matrix3x3 out) { // non working scalar type-> change to float
 
   for (int row = 0; row < 3; row++) {
     for (int col = 0; col < 3; col++) {
+      printf("scalar_f: %f scaler_d: %f product: %f\n", scalar, scalar_d,  mat[row][col]);
       out[row][col] = scalar * mat[row][col]; 
       printf("value: %f", scalar * mat[row][col]);
     }

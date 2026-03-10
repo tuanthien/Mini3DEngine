@@ -29,7 +29,7 @@ void print_matrix(Matrix3x3 matrix) {
     //loop through the value
         for (int col = 0; col < 3; col++) {
         // if not equal to expected_result return false
-            printf("row: %d col: %d value: %d\n", row, col, matrix[row][col]);
+            printf("row: %d col: %d value: %f\n", row, col, matrix[row][col]);
         }
     }
 }
@@ -69,7 +69,10 @@ int main(void)
 
     //get the actual_result
     Matrix3x3 actual_result_2 = {{0,0,0}, {0,0,0},{0,0,0}};
-    scalar_mul(mat5, 2.0, actual_result_2);
+    //not working call
+    scalar_mul(mat5, 2.f, 2.0, actual_result_2);
+    //working call
+    //scalar_mul(mat5, 2.0, actual_result_2);
 
     printf("_________________");
     print_matrix(actual_result_2);
@@ -77,7 +80,7 @@ int main(void)
     bool result_2 = is_equal_matrix(actual_result_2, expected_result_2);
     printf("result %s\n", result_2 ? "true" : "false");
 
-    //return 0;
+    return 0;
     // Initialization
     //--------------------------------------------------------------------------------------
     const int screenWidth = 800;
