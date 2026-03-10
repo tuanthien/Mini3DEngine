@@ -23,4 +23,4 @@ add_subdirectory(engine)
 add_executable(game game/main.c)
 
 # Link game with engine and Raylib
-target_link_libraries(game PRIVATE engine raylib option_target)
+target_link_libraries(game PRIVATE engine raylib option_target warnings_target)
