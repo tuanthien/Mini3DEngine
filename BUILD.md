@@ -1,5 +1,6 @@
 ## Build
 Only 32-bits is not supported.
+Default preset use Ninja Multi-Config. You either need to set ninja.exe in PATH or have -DCMAKE_MAKE_PROGRAM=<path/to/ninja.exe>
 
 #### Generate CMake Cache with default preset
 ```
@@ -23,8 +24,6 @@ There is no install script yet.
 ### MSVC (on Windows)
 ---
 Execute vcvarsall.bat (x64) for cl enviroments:  
-
-Default preset use Ninja Multi-Config. You either need to set ninja.exe in PATH or have -DCMAKE_MAKE_PROGRAM=<path/to/ninja.exe>
 
 ### Clang (on Windows or Linux)
 ---
