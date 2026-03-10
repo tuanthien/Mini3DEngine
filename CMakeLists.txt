@@ -1,52 +1,24 @@
 cmake_minimum_required(VERSION 3.27)
+project(mini_3d_engine VERSION 0.0.1 LANGUAGES C)
 
-project("raylib_dummy" VERSION 0.0.1 DESCRIPTION "raylib_dummy")
+# Use C11 standard
+set(CMAKE_C_STANDARD 11)
+set(CMAKE_C_STANDARD_REQUIRED ON)
 
+# Export compile commands (optional, for editor support)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON CACHE INTERNAL "")
 
-if (CMAKE_SYSTEM_NAME STREQUAL "Emscripten")
-  string(JOIN " " CMAKE_CXX_FLAGS 
-  )
-  string(JOIN " " CMAKE_EXE_LINKER_FLAGS
-    "-sUSE_GLFW=3"
-    "-sGL_ENABLE_GET_PROC_ADDRESS=1"
-    "-gsource-map"
-    "-sEXIT_RUNTIME"
-    "-sASYNCIFY"
-    "-sALLOW_MEMORY_GROWTH"
-    "-sMEMORY_GROWTH_GEOMETRIC_STEP=0.5"
-    "-sEXPORTED_RUNTIME_METHODS=stringToNewUTF8"
-  )
-endif()
-
-
-# Download Raylib
+# Include CPM for external libraries
 include(cmake/CMakePackageManager.cmake)
-CPMAddPackage(
-      GITHUB_REPOSITORY raysan5/raylib
-      GIT_SHALLOW ON
-      GIT_TAG c1ab645ca298a2801097931d1079b10ff7eb9df8
-      SYSTEM YES
-      EXCLUDE_FROM_ALL YES)
 
+# Add engine subdirectory
+add_subdirectory(engine)
 
-# Include and Link Raylib in the game
-add_executable(${PROJECT_NAME})
+# Game executable
+add_executable(game game/main.c)
 
-target_sources(
-    ${PROJECT_NAME}
-    PRIVATE
-    main.cpp
-)
+# Include engine headers
+target_include_directories(game PRIVATE engine)
 
-target_link_libraries(${PROJECT_NAME} PRIVATE raylib)
-set_target_properties(${PROJECT_NAME} PROPERTIES SUFFIX ".html")
-
-# if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
-#   add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
-#     COMMAND ${CMAKE_COMMAND} -E copy_if_different  
-#     $<TARGET_RUNTIME_DLLS:${PROJECT_NAME}>
-#     $<TARGET_FILE_DIR:${PROJECT_NAME}>
-#     COMMAND_EXPAND_LISTS
-#   )
-# endif()
+# Link game with engine and Raylib
+target_link_libraries(game PRIVATE engine raylib)
