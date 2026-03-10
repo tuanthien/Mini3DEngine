@@ -33,5 +33,35 @@
         "CPM_SOURCE_CACHE": "E:/Cache/CPM"
       }
     }
+  ],
+  "buildPresets": [
+    {
+      "name": "Debug MSVC",
+      "description": "",
+      "displayName": "",
+      "configurePreset": "windows_msvc",
+      "configuration": "Debug"
+    },
+    {
+      "name": "Release MSVC",
+      "description": "",
+      "displayName": "",
+      "configurePreset": "windows_msvc",
+      "configuration": "Release"
+    },
+    {
+      "name": "Debug ClangCL",
+      "description": "",
+      "displayName": "",
+      "configurePreset": "windows_clangcl",
+      "configuration": "Debug"
+    },
+    {
+      "name": "Release ClangCL",
+      "description": "",
+      "displayName": "",
+      "configurePreset": "windows_clangcl",
+      "configuration": "Release"
+    }
   ]
 }
